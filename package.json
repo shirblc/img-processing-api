@@ -1,0 +1,30 @@
+{
+  "name": "img-processing-api",
+  "version": "1.0.0",
+  "description": "Image processing API for Udacity's Backend Developer with Node program",
+  "homepage": "https://github.com/shirblc/img-processing-api#readme",
+  "bugs": {
+    "url": "https://github.com/shirblc/img-processing-api/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shirblc/img-processing-api.git"
+  },
+  "license": "ISC",
+  "author": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.1",
+    "@types/node": "^22.14.1",
+    "eslint": "^9.25.1",
+    "jasmine": "^5.6.0",
+    "prettier": "^3.5.3",
+    "typescript": "^5.8.3"
+  },
+  "dependencies": {
+    "express": "^5.1.0"
+  }
+}
