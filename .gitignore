@@ -53,3 +53,5 @@ dist/*
 .vscode-test
 
 .DS_Store
+src/assets/thumb/*
+!src/asserts/thumb/README.md
