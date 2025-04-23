@@ -4,6 +4,7 @@ import Express from "express";
 import sharp from "sharp";
 
 import { validateImageInputs } from "@utils/validation";
+import { Logger } from "@utils/logger";
 
 const router = Express.Router();
 
@@ -24,7 +25,7 @@ router.get("/", validateImageInputs, async (req, res) => {
   await readFile(resizedImagePath, { encoding: "binary" })
     // If it doesn't exist, resize the original
     .catch((_error) => {
-      console.log(`No existing file for image ${requestedImageName}. Resizing the image.`);
+      Logger.info(`No existing file for image ${requestedImageName}. Resizing the image.`);
       return sharp(`src/assets/full/${requestedImageName}.jpg`)
         .resize(requestedWidth, requestedHeight)
         .toFile(resizedImagePath);
@@ -33,9 +34,9 @@ router.get("/", validateImageInputs, async (req, res) => {
       // If it's a string, it means it comes from readFile, so the image already existed
       // Otherwise it's Sharp's output info, which is an object
       if (typeof image === "string")
-        console.debug(`Found existing file for ${requestedImageName}. Sending existing file.`);
+        Logger.debug(`Found existing file for ${requestedImageName}. Sending existing file.`);
 
-      console.log(
+      Logger.info(
         `Sending resized image ${requestedImageName} with dimensions: ${requestedHeight}x${requestedWidth}`,
       );
       res
@@ -47,7 +48,7 @@ router.get("/", validateImageInputs, async (req, res) => {
     })
     // If there was an error, alert the user
     .catch((error: Error) => {
-      console.error(error);
+      Logger.error(error);
 
       if (String(error).includes("file is missing"))
         res

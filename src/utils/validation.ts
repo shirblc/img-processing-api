@@ -1,5 +1,7 @@
 import { Request, Response, NextFunction } from "express";
 
+import { Logger } from "./logger";
+
 const defaultHeight = 200;
 const defaultWidth = 200;
 
@@ -13,7 +15,7 @@ const defaultWidth = 200;
 export function validateImageInputs(req: Request, res: Response, next: NextFunction): void {
   const requestedImageName = req.query.image as string | undefined;
   if (!requestedImageName) {
-    console.error("Invalid request: Image name is required");
+    Logger.error("Invalid request: Image name is required");
     res.status(400).send("Image name is required");
   }
 
@@ -21,14 +23,14 @@ export function validateImageInputs(req: Request, res: Response, next: NextFunct
   let requestedWidth = Number(req.query.width as string | undefined);
 
   if (!requestedHeight) {
-    console.warn(
+    Logger.warn(
       `No requested height for image ${requestedImageName}. Setting the default ${defaultHeight}.`,
     );
     requestedHeight = defaultHeight;
   }
 
   if (!requestedWidth) {
-    console.warn(
+    Logger.warn(
       `No requested width for image ${requestedImageName}. Setting the default ${defaultWidth}.`,
     );
     requestedWidth = defaultWidth;

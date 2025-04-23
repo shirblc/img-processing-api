@@ -1,11 +1,13 @@
 import Express from "express";
 import imagesRouter from "@routes/images";
+import { Logger, logRequest } from "@utils/logger";
 
 const port = 3000;
 const app = Express();
 app.use("/images", imagesRouter);
+app.use(logRequest);
 
 app.listen(port, (error) => {
-  if (error) console.log("An error occurred: ", error);
-  else console.log(`Server is listening on ${port}`);
+  if (error) Logger.error("An error occurred: ", error);
+  else Logger.info(`Server is listening on ${port}`);
 });
