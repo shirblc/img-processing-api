@@ -15,7 +15,8 @@
   "main": "index.js",
   "scripts": {
     "test": "test",
-    "lint": "eslint src test"
+    "lint": "eslint src test",
+    "format": "prettier .  --write"
   },
   "devDependencies": {
     "@types/express": "^5.0.1",
