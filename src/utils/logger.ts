@@ -1,5 +1,8 @@
+import { env } from "node:process";
 import { Request, Response, NextFunction } from "express";
 import { createLogger, format, transports } from "winston";
+
+const LogLevel = env["LOG_LEVEL"] || "debug";
 
 const logLevelColours = {
   debug: "cyan",
@@ -13,7 +16,7 @@ const consoleLogFormatter = format.printf((message) => {
 });
 
 export const Logger = createLogger({
-  level: "debug",
+  level: LogLevel,
   format: format.timestamp(),
   transports: [
     new transports.Console({
