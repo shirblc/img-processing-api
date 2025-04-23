@@ -16,7 +16,8 @@
   "scripts": {
     "test": "test",
     "lint": "eslint src test",
-    "format": "prettier .  --write"
+    "format": "prettier .  --write",
+    "start": "nodemon src/index.ts"
   },
   "devDependencies": {
     "@types/express": "^5.0.1",
@@ -25,7 +26,9 @@
     "eslint-config-prettier": "^10.1.2",
     "eslint-plugin-jasmine": "^4.2.2",
     "jasmine": "^5.6.0",
+    "nodemon": "^3.1.9",
     "prettier": "^3.5.3",
+    "ts-node": "^10.9.2",
     "typescript": "^5.8.3",
     "typescript-eslint": "^8.31.0"
   },
