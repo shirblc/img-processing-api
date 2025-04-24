@@ -1,6 +1,6 @@
 import Express from "express";
-import imagesRouter from "@routes/images";
-import { Logger, logRequest } from "@utils/logger";
+import imagesRouter from "./routes/images";
+import { Logger, logRequest } from "./utils/logger";
 
 const port = 3000;
 const app = Express();

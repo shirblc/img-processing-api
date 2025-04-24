@@ -3,8 +3,8 @@ import { resolve } from "node:path";
 import Express from "express";
 import sharp from "sharp";
 
-import { validateImageInputs } from "@utils/validation";
-import { Logger } from "@utils/logger";
+import { validateImageInputs } from "../utils/validation";
+import { Logger } from "../utils/logger";
 
 const router = Express.Router();
 
