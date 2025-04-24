@@ -4,8 +4,8 @@ import { Logger, logRequest } from "./utils/logger";
 
 export const port = 3000;
 export const app = Express();
-app.use("/images", imagesRouter);
 app.use(logRequest);
+app.use("/images", imagesRouter);
 
 app.listen(port, (error) => {
   if (error) Logger.error("An error occurred: ", error);
