@@ -20,9 +20,11 @@
     "lint": "eslint src test",
     "format": "prettier .  --write",
     "start": "nodemon -r tsconfig-paths/register src/index.ts",
-    "build": "tsc --project tsconfig.json"
+    "build": "tsc --project tsconfig.json",
+    "coverage": "nyc --require ts-node/register npm run test"
   },
   "devDependencies": {
+    "@istanbuljs/nyc-config-typescript": "^1.0.2",
     "@types/express": "^5.0.1",
     "@types/jasmine": "^5.1.7",
     "@types/node": "^22.14.1",
@@ -30,10 +32,13 @@
     "eslint": "^9.25.1",
     "eslint-config-prettier": "^10.1.2",
     "eslint-plugin-jasmine": "^4.2.2",
+    "image-size": "^2.0.2",
     "jasmine": "^5.6.0",
     "jasmine-spec-reporter": "^7.0.0",
     "nodemon": "^3.1.9",
+    "nyc": "^17.1.0",
     "prettier": "^3.5.3",
+    "source-map-support": "^0.5.21",
     "supertest": "^7.1.0",
     "ts-node": "^10.9.2",
     "tsconfig-paths": "^4.2.0",

@@ -1,6 +1,7 @@
 {
   "extends": "./tsconfig.common.json",
   "compilerOptions": {
+    "inlineSourceMap": true,
     "outDir": "./spec"
   },
   "include": ["src/**/*.ts", "src/env.d.ts", "test/**/*.ts"],
