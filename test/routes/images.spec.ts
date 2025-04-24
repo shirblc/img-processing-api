@@ -66,6 +66,8 @@ describe("Images Routes", () => {
     // ensure the file exists
     await request.get("/images?image=icelandwaterfall");
 
+    infoLogSpy.calls.reset();
+
     const response = await request.get("/images?image=icelandwaterfall");
 
     expect(response.status).toBe(200);
