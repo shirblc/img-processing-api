@@ -1,12 +1,6 @@
 {
   "extends": "./tsconfig.common.json",
   "compilerOptions": {
-    "rootDir": "./src/",
-    "baseUrl": "./src/",
-    "paths": {
-      "@routes/*": ["./routes/*"],
-      "@utils/*": ["./utils/*"]
-    },
     "outDir": "./dist"
   },
   "include": ["src/**/*.ts", "src/env.d.ts"],
