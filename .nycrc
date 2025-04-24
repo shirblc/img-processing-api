@@ -3,5 +3,5 @@
   "all": true,
   "check-coverage": true,
   "include": ["src/**/*.ts", "spec/src/**/*.js"],
-  "reporter": ["lcov"]
+  "reporter": ["lcov", "text-summary"]
 }
