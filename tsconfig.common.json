@@ -1,0 +1,20 @@
+{
+  "compilerOptions": {
+    /* Visit https://aka.ms/tsconfig to read more about this file */
+    "target": "ES2020",
+    "lib": ["ES2020"],
+    "module": "commonjs",
+    "declaration": false,
+    // "sourceMap": true,
+    // "inlineSourceMap": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "strict": true,
+    "noImplicitAny": true,
+    "skipLibCheck": true
+  },
+  "exclude": ["node_modules", "dist/*", "spec/*"],
+  "ts-node": {
+    "files": true
+  }
+}

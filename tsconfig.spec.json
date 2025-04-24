@@ -1,0 +1,17 @@
+{
+  "extends": "./tsconfig.common.json",
+  "compilerOptions": {
+    "rootDir": "./",
+    "baseUrl": "./",
+    "paths": {
+      "@routes/*": ["./src/routes/*"],
+      "@utils/*": ["./src/utils/*"],
+      "@src/*": ["./src/*"]
+    },
+    "outDir": "./spec"
+  },
+  "include": ["src/**/*.ts", "src/env.d.ts", "test/**/*.ts"],
+  "ts-node": {
+    "files": true
+  }
+}
