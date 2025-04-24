@@ -108,4 +108,11 @@ describe("Images Routes", () => {
 
     expect(existingFileLog).toBeUndefined();
   });
+
+  it("should reject a request without an image name", async () => {
+    const response = await request.get(`/images?height=400&width=400`);
+
+    expect(response.status).toBe(400);
+    expect(response.text).toBe("Image name is required");
+  });
 });
