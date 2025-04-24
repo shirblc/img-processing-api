@@ -30,8 +30,8 @@ Version 1.
 **Query Parameters:**
 
 - name (string) - The name of the image to resize. The full size image with the given name needs to be in the `src/assets/full` folder before making the request.
-- height (number) - Optional. The height of the resized output image.
-- width (number) - Optional. The width of the resized output image.
+- height (number) - Optional, defaults to 200. The height of the resized output image.
+- width (number) - Optional, defaults to 200. The width of the resized output image.
 
 **Response:** The endpoint returns the resized image file with the given sizes.
 
