@@ -1,7 +1,7 @@
 # Image Processing API
 
-[![CircleCI](https://circleci.com/gh/shirblc/angular-gulp.svg?style=shield)](https://circleci.com/gh/shirblc/angular-gulp.svg)
-[![codecov](https://codecov.io/gh/shirblc/angular-gulp/graph/badge.svg)](https://codecov.io/gh/shirblc/angular-gulp)
+[![CircleCI](https://circleci.com/gh/shirblc/img-processing-api.svg?style=shield)](https://circleci.com/gh/shirblc/img-processing-api.svg)
+[![codecov](https://codecov.io/gh/shirblc/img-processing-api/graph/badge.svg)](https://codecov.io/gh/shirblc/img-processing-api)
 
 ## Version
 
@@ -44,7 +44,7 @@ Version 1.
 
 ## Contents
 
-### Routes
+### Routes
 
 - **images** - Contains images-related routes.
 
@@ -67,10 +67,10 @@ Version 1.
 1. **Prettier** - This project uses prettier for code formatting. For more information, check the [Prettier website](https://prettier.io).
 2. **ESLint** - This project uses ESLint for linting. For more information, check the [ESLint website](https://eslint.org). Included packages:
 
-- **eslint**
-- **eslint-config-prettier** - prettier configuration to ensure ESLint and prettier don't conflict.
-- **eslint-plugin-jasmine** - for linting Jasmine tests
-- **typescript-eslint** - TypeScript configuration and plugins for ESLint.
+   - **eslint**
+   - **eslint-config-prettier** - prettier configuration to ensure ESLint and prettier don't conflict.
+   - **eslint-plugin-jasmine** - for linting Jasmine tests
+   - **typescript-eslint** - TypeScript configuration and plugins for ESLint.
 
 ### Testing Dependencies
 
