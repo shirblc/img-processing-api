@@ -18,6 +18,7 @@
     "test:setup": "node ./spec/test/helpers/setup.js",
     "test": "npm run test:compile && npm run test:setup && jasmine",
     "lint": "eslint src test",
+    "lint:fix": "eslint src test --fix",
     "format": "prettier .  --write",
     "start": "nodemon -r tsconfig-paths/register src/index.ts",
     "build": "tsc --project tsconfig.json",
