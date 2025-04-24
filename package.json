@@ -14,7 +14,9 @@
   "author": "",
   "main": "index.js",
   "scripts": {
-    "test": "tsc --project tsconfig.spec.json && jasmine",
+    "test:compile": "tsc --project tsconfig.spec.json",
+    "test:setup": "node ./spec/test/helpers/setup.js",
+    "test": "npm run test:compile && npm run test:setup && jasmine",
     "lint": "eslint src test",
     "format": "prettier .  --write",
     "start": "nodemon -r tsconfig-paths/register src/index.ts",
