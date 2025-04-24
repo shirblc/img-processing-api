@@ -2,8 +2,8 @@ import Express from "express";
 import imagesRouter from "./routes/images";
 import { Logger, logRequest } from "./utils/logger";
 
-const port = 3000;
-const app = Express();
+export const port = 3000;
+export const app = Express();
 app.use("/images", imagesRouter);
 app.use(logRequest);
 

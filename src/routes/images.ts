@@ -1,4 +1,4 @@
-import { readFile } from "node:fs/promises";
+import { promises as fsPromise } from "node:fs";
 import { resolve } from "node:path";
 import Express from "express";
 import sharp from "sharp";
@@ -22,7 +22,8 @@ router.get("/", validateImageInputs, async (req, res) => {
   const resizedImagePath = `src/assets/thumb/${resizedImageName}.jpg`;
 
   // Try to fetch the resized file
-  await readFile(resizedImagePath, { encoding: "binary" })
+  await fsPromise
+    .readFile(resizedImagePath, { encoding: "binary" })
     // If it doesn't exist, resize the original
     .catch((_error) => {
       Logger.info(`No existing file for image ${requestedImageName}. Resizing the image.`);
@@ -48,7 +49,7 @@ router.get("/", validateImageInputs, async (req, res) => {
     })
     // If there was an error, alert the user
     .catch((error: Error) => {
-      Logger.error(error);
+      Logger.error(`Error: ${error.message}`);
 
       if (String(error).includes("file is missing"))
         res
