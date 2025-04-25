@@ -12,8 +12,6 @@
       "@utils/*": ["./src/utils/*"],
       "@src/*": ["./src/*"]
     },
-    // "sourceMap": true,
-    // "inlineSourceMap": true,
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "strict": true,
