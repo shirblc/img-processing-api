@@ -50,6 +50,7 @@ Version 1.
 
 ### Utilities
 
+- **image** - Includes helpers for resizing an image using Sharp and for generating file names based on the inputs to the GET /images endpoint.
 - **logger** - Includes a configured Winston logger and logging middleware for Express.
 - **validation** - Includes a middleware for validating the query parameters for the GET /images endpoint.
 
