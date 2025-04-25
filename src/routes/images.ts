@@ -23,17 +23,15 @@ router.get("/", validateImageInputs, async (req, res) => {
   // Try to fetch the resized file
   await fsPromise
     .readFile(resizedImagePath, { encoding: "binary" })
+    .then(() => {
+      Logger.debug(`Found existing file for ${requestedImageName}. Sending existing file.`);
+    })
     // If it doesn't exist, resize the original
     .catch((_error) => {
       Logger.info(`No existing file for image ${requestedImageName}. Resizing the image.`);
       return resizeImageWithSharp(requestedImageName, requestedHeight, requestedWidth);
     })
-    .then((image) => {
-      // If it's a string, it means it comes from readFile, so the image already existed
-      // Otherwise it's Sharp's output info, which is an object
-      if (typeof image === "string")
-        Logger.debug(`Found existing file for ${requestedImageName}. Sending existing file.`);
-
+    .then((_image) => {
       Logger.info(
         `Sending resized image ${requestedImageName} with dimensions: ${requestedHeight}x${requestedWidth}`,
       );
