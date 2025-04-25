@@ -5,7 +5,7 @@ import { promises as fsPromise } from "node:fs";
 
 import { app } from "../../src/index";
 import { Logger } from "../../src/utils/logger";
-import { FullFolder, ThumbFolder } from "../../src/utils/image";
+import * as ImageUtils from "../../src/utils/image";
 
 describe("Images Routes", () => {
   let request: supertest.Agent;
@@ -36,7 +36,7 @@ describe("Images Routes", () => {
       .find((call) => call.args[0].includes("file is missing"));
 
     expect(notFoundLog).toBeDefined();
-    expect(notFoundLog?.args[0]).toContain(`${FullFolder}/robot.jpg`);
+    expect(notFoundLog?.args[0]).toContain(`${ImageUtils.FullFolder}/robot.jpg`);
   });
 
   it("should return an image with the default size of 200x200 if no size is provided", async () => {
@@ -90,7 +90,7 @@ describe("Images Routes", () => {
 
   it("should log that a new image is being generated if the image doesn't exist with the given size", async () => {
     const requestedImageName = "fjord";
-    const resizedImagePath = `${ThumbFolder}/${requestedImageName}_200x200.jpg`;
+    const resizedImagePath = `${ImageUtils.ThumbFolder}/${requestedImageName}_200x200.jpg`;
     const readSpy = spyOn(fsPromise, "readFile").and.rejectWith(Error("file doesn't exist!"));
     const response = await request.get(`/images?image=${requestedImageName}`);
 
@@ -110,6 +110,18 @@ describe("Images Routes", () => {
       .find((call) => call.args[0].includes("Found existing file for"));
 
     expect(existingFileLog).toBeUndefined();
+  });
+
+  it("should raise an error if another issue occurs", async () => {
+    spyOn(fsPromise, "readFile").and.rejectWith(Error("file is missing!"));
+    spyOn(ImageUtils, "resizeImageWithSharp").and.rejectWith(Error("ERROR!"));
+    const response = await request.get(`/images?image=beepbeep`);
+
+    expect(response.status).toBe(500);
+
+    const errorLog = errorLogSpy.calls.all().find((call) => call.args[0].includes("Error: ERROR!"));
+
+    expect(errorLog).toBeDefined();
   });
 
   it("should reject a request without an image name", async () => {
