@@ -25,14 +25,14 @@ export function validateImageInputs(req: Request, res: Response, next: NextFunct
 
   if (!requestedHeight) {
     Logger.warn(
-      `No requested height for image ${requestedImageName}. Setting the default ${defaultHeight}.`,
+      `No valid requested height for image ${requestedImageName}. Setting the default ${defaultHeight}.`,
     );
     requestedHeight = defaultHeight;
   }
 
   if (!requestedWidth) {
     Logger.warn(
-      `No requested width for image ${requestedImageName}. Setting the default ${defaultWidth}.`,
+      `No valid requested width for image ${requestedImageName}. Setting the default ${defaultWidth}.`,
     );
     requestedWidth = defaultWidth;
   }

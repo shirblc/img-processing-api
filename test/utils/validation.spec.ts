@@ -55,7 +55,7 @@ describe("Validation Utils", () => {
     validateImageInputs(request as Request, res as Response, nextFn);
 
     expect(warnLogSpy.calls.first().args[0]).toEqual(
-      "No requested height for image myimage. Setting the default 200.",
+      "No valid requested height for image myimage. Setting the default 200.",
     );
   });
 
@@ -70,7 +70,7 @@ describe("Validation Utils", () => {
     validateImageInputs(request as Request, res as Response, nextFn);
 
     expect(warnLogSpy.calls.first().args[0]).toEqual(
-      "No requested width for image myimage. Setting the default 200.",
+      "No valid requested width for image myimage. Setting the default 200.",
     );
   });
 });

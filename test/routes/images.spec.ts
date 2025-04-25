@@ -49,6 +49,16 @@ describe("Images Routes", () => {
     expect(responseImageSize.width).toEqual(200);
   });
 
+  it("should return an image with the default size of 200x200 if provided sizes aren't valid", async () => {
+    const response = await request.get("/images?image=icelandwaterfall&height=hi&width=ho");
+
+    expect(response.status).toBe(200);
+    const responseImageSize = imageSize(response.body);
+
+    expect(responseImageSize.height).toEqual(200);
+    expect(responseImageSize.width).toEqual(200);
+  });
+
   it("should return an image with the given size if height and width are given", async () => {
     const height = 300;
     const width = 300;
