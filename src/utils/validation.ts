@@ -17,6 +17,7 @@ export function validateImageInputs(req: Request, res: Response, next: NextFunct
   if (!requestedImageName) {
     Logger.error("Invalid request: Image name is required");
     res.status(400).send("Image name is required");
+    return;
   }
 
   let requestedHeight = Number(req.query.height as string | undefined);
