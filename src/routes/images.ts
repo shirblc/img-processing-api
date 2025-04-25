@@ -1,10 +1,10 @@
 import { promises as fsPromise } from "node:fs";
 import { resolve } from "node:path";
 import Express from "express";
-import sharp from "sharp";
 
 import { validateImageInputs } from "../utils/validation";
 import { Logger } from "../utils/logger";
+import { getResizedImagePath, resizeImageWithSharp } from "../utils/image";
 
 const router = Express.Router();
 
@@ -18,8 +18,7 @@ router.get("/", validateImageInputs, async (req, res) => {
   const requestedImageName = req.image.name;
   const requestedHeight = req.image.height;
   const requestedWidth = req.image.width;
-  const resizedImageName = `${requestedImageName}_${requestedHeight}x${requestedWidth}`;
-  const resizedImagePath = `src/assets/thumb/${resizedImageName}.jpg`;
+  const resizedImagePath = getResizedImagePath(requestedImageName, requestedHeight, requestedWidth);
 
   // Try to fetch the resized file
   await fsPromise
@@ -27,9 +26,7 @@ router.get("/", validateImageInputs, async (req, res) => {
     // If it doesn't exist, resize the original
     .catch((_error) => {
       Logger.info(`No existing file for image ${requestedImageName}. Resizing the image.`);
-      return sharp(`src/assets/full/${requestedImageName}.jpg`)
-        .resize(requestedWidth, requestedHeight)
-        .toFile(resizedImagePath);
+      return resizeImageWithSharp(requestedImageName, requestedHeight, requestedWidth);
     })
     .then((image) => {
       // If it's a string, it means it comes from readFile, so the image already existed

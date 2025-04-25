@@ -5,6 +5,7 @@ import { promises as fsPromise } from "node:fs";
 
 import { app } from "../../src/index";
 import { Logger } from "../../src/utils/logger";
+import { FullFolder, ThumbFolder } from "../../src/utils/image";
 
 describe("Images Routes", () => {
   let request: supertest.Agent;
@@ -35,7 +36,7 @@ describe("Images Routes", () => {
       .find((call) => call.args[0].includes("file is missing"));
 
     expect(notFoundLog).toBeDefined();
-    expect(notFoundLog?.args[0]).toContain("src/assets/full/robot.jpg");
+    expect(notFoundLog?.args[0]).toContain(`${FullFolder}/robot.jpg`);
   });
 
   it("should return an image with the default size of 200x200 if no size is provided", async () => {
@@ -89,7 +90,7 @@ describe("Images Routes", () => {
 
   it("should log that a new image is being generated if the image doesn't exist with the given size", async () => {
     const requestedImageName = "fjord";
-    const resizedImagePath = `src/assets/thumb/${requestedImageName}_200x200.jpg`;
+    const resizedImagePath = `${ThumbFolder}/${requestedImageName}_200x200.jpg`;
     const readSpy = spyOn(fsPromise, "readFile").and.rejectWith(Error("file doesn't exist!"));
     const response = await request.get(`/images?image=${requestedImageName}`);
 
