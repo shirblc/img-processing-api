@@ -28,7 +28,7 @@
     "@istanbuljs/nyc-config-typescript": "^1.0.2",
     "@types/express": "^5.0.5",
     "@types/jasmine": "^5.1.9",
-    "@types/node": "^24.9.2",
+    "@types/node": "^24.10.0",
     "@types/supertest": "^6.0.3",
     "eslint": "^9.36.0",
     "eslint-config-prettier": "^10.1.8",
