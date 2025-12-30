@@ -2,7 +2,7 @@ import { Request, Response, NextFunction } from "express";
 import winston from "winston";
 
 import { Logger } from "../../src/utils/logger";
-import { validateImageInputs } from "../../src/utils/validation";
+import { validateImageInputs, validateThumbnailInputs } from "../../src/utils/validation";
 
 describe("Validation Utils", () => {
   let res: Partial<Response>;
@@ -20,6 +20,10 @@ describe("Validation Utils", () => {
       status(code) {
         return {
           statusCode: code,
+          json(body) {
+            res.statusMessage = JSON.stringify({ statusCode: code, statusMessage: body });
+            return { statusCode: code, statusMessage: body } as Response;
+          },
           send(body) {
             res.statusMessage = JSON.stringify({ statusCode: code, statusMessage: body });
             return { statusCode: code, statusMessage: body } as Response;
@@ -71,6 +75,50 @@ describe("Validation Utils", () => {
 
     expect(warnLogSpy.calls.first().args[0]).toEqual(
       "No valid requested width for image myimage. Setting the default 200.",
+    );
+  });
+
+  it("validateThumbnailInputs() - should raise an error if no image path has been provided", () => {
+    const request: Partial<Request> = {
+      body: {
+        outputFolderPath: "myfolder",
+      },
+    };
+
+    validateThumbnailInputs(request as Request, res as Response, nextFn);
+
+    expect(errorLogSpy.calls.first().args[0]).toEqual("No image path path provided");
+    expect(res.statusMessage).toEqual(
+      JSON.stringify({
+        statusCode: 400,
+        statusMessage: {
+          success: false,
+          message:
+            "No image path provided. Please provide the path of an image to resize and try again.",
+        },
+      }),
+    );
+  });
+
+  it("validateThumbnailInputs() - should raise an error if no output path has been provided", () => {
+    const request: Partial<Request> = {
+      body: {
+        inputImagePath: "myimage",
+      },
+    };
+
+    validateThumbnailInputs(request as Request, res as Response, nextFn);
+
+    expect(errorLogSpy.calls.first().args[0]).toEqual("No output path provided");
+    expect(res.statusMessage).toEqual(
+      JSON.stringify({
+        statusCode: 400,
+        statusMessage: {
+          success: false,
+          message:
+            "No output path provided. Please provide a path to output the thumbnail to and try again.",
+        },
+      }),
     );
   });
 });

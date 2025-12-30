@@ -58,19 +58,21 @@ export function validateThumbnailInputs(req: Request, res: Response, next: NextF
 
   if (!originalImagePath) {
     Logger.error("No image path path provided");
-    res
-      .status(400)
-      .send("No image path provided. Please provide the path of an image to resize and try again.");
+    res.status(400).json({
+      success: false,
+      message:
+        "No image path provided. Please provide the path of an image to resize and try again.",
+    });
     return;
   }
 
   if (!outputFolderPath) {
-    Logger.error("No thumbnail path provided");
-    res
-      .status(400)
-      .send(
-        "No thumbnail path provided. Please provide a path to output the thumbnail to and try again.",
-      );
+    Logger.error("No output path provided");
+    res.status(400).json({
+      success: false,
+      message:
+        "No output path provided. Please provide a path to output the thumbnail to and try again.",
+    });
     return;
   }
 
