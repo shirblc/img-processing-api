@@ -91,7 +91,6 @@ Version 1.
 
 1. **Prettier** - This project uses prettier for code formatting. For more information, check the [Prettier website](https://prettier.io).
 2. **ESLint** - This project uses ESLint for linting. For more information, check the [ESLint website](https://eslint.org). Included packages:
-
    - **eslint**
    - **eslint-config-prettier** - prettier configuration to ensure ESLint and prettier don't conflict.
    - **eslint-plugin-jasmine** - for linting Jasmine tests
@@ -102,18 +101,15 @@ Version 1.
 This project's tests are run using Jasmine and Supertest. Thus, testing requires several packages:
 
 1. **Jasmine** - An open-source behaviour-driven testing framework. For more information, check Jasmine's [official site](https://jasmine.github.io). Included packages:
-
    - **jasmine**
    - **jasmine-spec-reporter**
    - **@types/jasmine** - A typed version, required in order to write TypeScript tests.
 
 2. **Supertest** - An open-source HTTP test agent for easier API testing. Used to test the Express server's responses. For more information, check the [Supertest repository](https://github.com/ladjs/supertest).
-
    - **supertest**
    - **@types/supertest**
 
 3. **nyc** - The command line interface for Istanbul - an instrumenter for JavaScript. Is used to calculate code coverage from tests. For more information, check the [nyc repository](https://github.com/istanbuljs/nyc).
-
    - **nyc**
    - **source-map-support** - allows nyc to map the compiled tests and code back to the source code to calculate the coverage of the TypeScript files.
    - **@istanbuljs/nyc-config-typescript** - default nyc config for TypeScript projects.
