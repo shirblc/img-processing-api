@@ -42,11 +42,35 @@ Version 1.
 - 404 - Returned when the full size image doesn't exist in the source folder.
 - 500 - Returned when any other error occurs.
 
+#### POST /thumbnails
+
+**Description:** Resizes an image to 360px width based on the input and output paths provided. Saves the image to the given location with the original file name.
+
+**Query Parameters:** None.
+
+**Body:**
+
+- inputImagePath (string) - Absolute path of the image to generate a thumbnail of.
+- outputFolderPath (string) - The folder to save the generated thumbnail to.
+
+**Response:** A JSON with the following keys:
+
+- success (boolean)
+- outputFilePath (string) - the path to the generated thumbnail.
+
+**Potential Response Codes:**
+
+- 200 - A successful fetch. The image is included in the response.
+- 400 - Returned when there's no image name in the query parameters.
+- 404 - Returned when the full size image doesn't exist in the source folder.
+- 500 - Returned when any other error occurs.
+
 ## Contents
 
 ### Routes
 
 - **images** - Contains images-related routes.
+- **thumnails** - Contains thumbnails-related routes.
 
 ### Utilities
 

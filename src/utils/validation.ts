@@ -45,3 +45,39 @@ export function validateImageInputs(req: Request, res: Response, next: NextFunct
 
   next();
 }
+
+/**
+ * Validates the inputs to the POST /thumbnails endpoint.
+ * @param req the incoming request
+ * @param res the outgoing response
+ * @param next the next middleware in the chain
+ */
+export function validateThumbnailInputs(req: Request, res: Response, next: NextFunction): void {
+  const originalImagePath = req.body["inputImagePath"] as string | undefined;
+  const outputFolderPath = req.body["outputFolderPath"] as string | undefined;
+
+  if (!originalImagePath) {
+    Logger.error("No image path path provided");
+    res
+      .status(400)
+      .send("No image path provided. Please provide the path of an image to resize and try again.");
+    return;
+  }
+
+  if (!outputFolderPath) {
+    Logger.error("No thumbnail path provided");
+    res
+      .status(400)
+      .send(
+        "No thumbnail path provided. Please provide a path to output the thumbnail to and try again.",
+      );
+    return;
+  }
+
+  req.thumbnail = {
+    originalImagePath,
+    outputFolderPath,
+  };
+
+  next();
+}

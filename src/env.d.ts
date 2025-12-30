@@ -7,5 +7,9 @@ declare namespace Express {
       height: number;
       width: number;
     };
+    thumbnail: {
+      originalImagePath: string;
+      outputFolderPath: string;
+    };
   }
 }

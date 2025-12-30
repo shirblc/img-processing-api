@@ -30,3 +30,18 @@ export function resizeImageWithSharp(
 
   return sharp(`${FullFolder}/${imageName}.jpg`).resize(width, height).toFile(imagePath);
 }
+
+/**
+ * Creates a thumbnail with the given width using Sharp.
+ * @param inputImagePath - the name of the image to resize.
+ * @param outputImagePath - the full path for the output image.
+ * @param width - the requested width of the image.
+ * @returns - a promise that resolves to Sharp's OutputInfo.
+ */
+export function createThumbnailWithSharp(
+  inputImagePath: string,
+  outputPath: string,
+  width: number = 360,
+): Promise<sharp.OutputInfo> {
+  return sharp(inputImagePath).resize(width, null).toFile(outputPath);
+}
