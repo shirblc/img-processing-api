@@ -41,7 +41,7 @@ export function resizeImageWithSharp(
 export function createThumbnailWithSharp(
   inputImagePath: string,
   outputPath: string,
-  width: number = 360,
+  width: number,
 ): Promise<sharp.OutputInfo> {
   return sharp(inputImagePath).resize(width, null).toFile(outputPath);
 }
