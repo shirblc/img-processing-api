@@ -1,6 +1,6 @@
 import Express, { json } from "express";
 import imagesRouter from "./routes/images";
-import thumbnailsRouter from "./routes/thumbnail";
+import thumbnailsRouter from "./routes/thumbnails";
 import { Logger, logRequest } from "./utils/logger";
 
 export const port = 3000;

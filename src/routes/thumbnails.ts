@@ -18,7 +18,7 @@ router.post("/", validateThumbnailInputs, (req, res) => {
       Logger.debug(`Found existing file for ${thumbnailPath}. Sending existing file.`);
     })
     .catch((_error) => {
-      Logger.warning("Thumbnail not found. Creating thumbnail now.");
+      Logger.error("Thumbnail not found. Creating thumbnail now.");
       return createThumbnailWithSharp(originalImagePath, thumbnailPath, 360);
     })
     .then((output) => {
@@ -31,7 +31,7 @@ router.post("/", validateThumbnailInputs, (req, res) => {
       Logger.error(`Error: ${error.message}`);
 
       if (String(error).includes("file is missing"))
-        res.status(404).send({
+        res.status(400).send({
           success: false,
           message: `Image ${originalImagePath} doesn't exist. Add it or fix the path and try again.`,
         });

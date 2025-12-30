@@ -57,3 +57,5 @@ src/assets/thumb/*
 !src/asserts/thumb/README.md
 spec/*
 !spec/support/jasmine.json
+!spec/images
+spec/images/*.jpg
